@@ -270,6 +270,14 @@ def ask_yes_no(prompt: str) -> bool:
     - Return only after receiving a valid input; do not stop the program with errors.
     """
     # TODO: put your code!!!!
+    while True:
+        answer = input(prompt + " (y/n): ").lower()
+        if answer == 'y' or answer == 'yes':
+            return True
+        elif answer == 'n' or answer == 'no':
+            return False
+        else:
+            print("Please answer y/n.")
 
 # ================================
 # Functions to complete: main game
