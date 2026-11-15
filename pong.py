@@ -107,10 +107,20 @@ def get_config() -> tuple[int, int, int, int, int]:
     """
 
     # TODO: put your code!!!!
+    # Ask the user if they want to customize the game parameters
+    if ask_yes_no("Do you want to change the default game parameters?"):
+        paddle_height = read_int_in_range("Enter paddle height (60-160): ", 60, 160)
+        speed_paddle = read_int_in_range("Enter paddle speed (1-20): ", 1, 20)
+        speed_ball_x = read_int_in_range("Enter ball X speed (1-20): ", 1, 20)
+        speed_ball_y = read_int_in_range("Enter ball Y speed (1-20): ", 1, 20)
+        ball_radius = read_int_in_range("Enter ball radius (5-30): ", 5, 30)
+        return paddle_height, speed_paddle, speed_ball_x, speed_ball_y, ball_radius
+    
 
     # This line of code has been left for letting the full program work
     # It corresponds to the user answering NO to changing any default values 
     # You will need to eliminate it when adding your code
+    # Return the custom configuration values in the  requiredorder
     return PADDLE_H, SPEED_PADDLE, SPEED_BALL_X, SPEED_BALL_Y, BALL_RADIUS 
 
 def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
@@ -145,7 +155,18 @@ def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
     """
 
     # TODO: put your code!!!!
-
+    #Ask the user if they want to change the game colors
+    if ask_yes_no("Do you want to change the game colors?"):
+    #Ask the user if they want to modify the background color
+        background_color = read_color("background")
+        foreground_color = read_color("foreground")
+        
+    # Return the new color 
+        return background_color, foreground_color
+    
+    # Return the original color if the user say no 
+    return BLACK, WHITE
+    
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
     return BLACK, WHITE
@@ -181,6 +202,13 @@ def read_color(prompt: str) -> tuple[int, int, int]:
 
     # TODO: put your code!!!!
     # return r, g, b
+    #  Red , Green and Blue value between 0 and 255 
+    r = read_int_in_range("Red of" + prompt +  " color (0-255): ", 0, 255)
+    g = read_int_in_range("Green of" + prompt +  " color (0-255): ", 0, 255)
+    b = read_int_in_range("Blue of" + prompt +  " color (0-255): ", 0, 255)
+    return (r, g, b)
+    
+    
 
 def read_int_in_range(prompt: str, low: int, high: int) -> int:
     """Ask user for an integer within [low, high]. 
@@ -204,6 +232,16 @@ def read_int_in_range(prompt: str, low: int, high: int) -> int:
     """
     
     # TODO: put your code!!!!
+while True:
+    text = input(prompt)
+    if text.isdigit() or (text.startswith("-") and text[1:].isdigit()):
+        num = int(text)
+        if low <= num <= high:
+            return num
+       
+        print("Invalid number. Try again.")
+        print(f"Please enter a number between {low} and {high}.")
+
 
 def read_int_in_range_w_default(prompt: str, low: int, high: int, default_val: int) -> int:
     """ Advanced/alternate more user-friendly version of read_int_in_range().
