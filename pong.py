@@ -105,8 +105,6 @@ def get_config() -> tuple[int, int, int, int, int]:
       the chosen values, not modify constants.
     - Remember to maintain the same order of the returned elements.
     """
-
-    # TODO: put your code!!!!
     # Ask the user if they want to customize the game parameters
     if ask_yes_no("Do you want to change the default game parameters?"):
         paddle_height = read_int_in_range("Enter paddle height (60-160): ", 60, 160)
@@ -116,11 +114,6 @@ def get_config() -> tuple[int, int, int, int, int]:
         ball_radius = read_int_in_range("Enter ball radius (5-30): ", 5, 30)
         return paddle_height, speed_paddle, speed_ball_x, speed_ball_y, ball_radius
     
-
-    # This line of code has been left for letting the full program work
-    # It corresponds to the user answering NO to changing any default values 
-    # You will need to eliminate it when adding your code
-    # Return the custom configuration values in the  requiredorder
     return PADDLE_H, SPEED_PADDLE, SPEED_BALL_X, SPEED_BALL_Y, BALL_RADIUS 
 
 def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
@@ -153,8 +146,6 @@ def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
     - Remember that colors in pygame are defined as tuples of 3 integers: (red, green, blue)
     - Keep the order of returned values consistent: first background, then foreground.
     """
-
-    # TODO: put your code!!!!
     #Ask the user if they want to change the game colors
     if ask_yes_no("Do you want to change the game colors?"):
     #Ask the user if they want to modify the background color
@@ -166,10 +157,7 @@ def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
     
     # Return the original color if the user say no 
     return BLACK, WHITE
-    
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate it when adding your code
-    return BLACK, WHITE
+
 
 def read_color(prompt: str) -> tuple[int, int, int]:
     """Ask the user to enter the three RGB components of a color with each component in [0,255].
@@ -199,8 +187,6 @@ def read_color(prompt: str) -> tuple[int, int, int]:
     - In pygame, colors are always expressed as (R, G, B) tuples.
     - Keep the order (Red, then Green, then Blue).
     """ 
-
-    # TODO: put your code!!!!
     # return r, g, b
     #  Red , Green and Blue value between 0 and 255 
     r = read_int_in_range("Red of " + prompt +  " color (0-255): ", 0, 255)
@@ -230,7 +216,6 @@ def read_int_in_range(prompt: str, low: int, high: int) -> int:
     -------
     An integer value such that low <= value <= high.
     """
-
     while True:
         text = input(f"{prompt} (between {low} and {high}): " )
         try:
@@ -509,11 +494,24 @@ def reset_ball(center_x: int, center_y: int, vx0: int, vy0: int, to_right: bool)
     - Optionally, randomize the vertical velocity slightly (e.g., sign or magnitude) for variability.
     """
 
-    # TODO: put your code!!!!
+    # the ball always starts from the center of the screen
+    x = center_x
+    y = center_y 
 
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate/modify it when adding your code
-    return center_x, center_y, vx0, vy0
+    # since the horizontal direction depends on to_right, we can use a conditional expression to set vx accordingly
+    if to_right:
+        vx = vx0
+    else:
+        vx = -vx0
+
+    # in order to make a variation of the vertical speed, we can randomly choose a sign for vy
+    vy = max(1, vy0 + random.randint(-1, 1)) # ensures that vy is at least 1 pixel/frame, and adds a small random variation of -1, 0, or +1 to the base speed
+
+    # the serve can go up or down with equal probability
+    if random.random() < 0.5:
+        vy = -vy
+
+    return x, y, vx, vy
 
 
 
