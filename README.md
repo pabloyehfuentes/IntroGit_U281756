@@ -28,8 +28,11 @@ main()
       the variables for the game (paddle positions, ball position and velocity, and scores) are stored locally in the main(). Since each function receives values as parameters and returns new ones. For example, collide_ball_walls() receives positional values of the ball and dimensions of the screen, and then returns a new position and velocity of the ball when it hits a wall.
       this idea works with get_config() values, the value is returned once and then it is passed as parameters to any function that needs it.
 
-4. Key implementation decisions
-
+3. Key implementation decisions
+One important decision was not to use global variables. Instead, we used parameters to pass information between functions and return values to get the results. This makes the code easier to understand and test.
+We also decided to separate the configuration from the game loop. This allows the user to change the game settings before starting to play.
+Another decision was to divide the program into smaller functions, so each function has a specific task. This makes the code easier to test and helps us find errors.
+Finally, we added the option to play against the machine, allowing the user to choose how they want to play. 
 
 
 5. Problems and solutions
@@ -42,5 +45,6 @@ When writing the code for the machine, it would not respond quickly to reach the
 7. Optional features
 - Added a user input asking if the user would like to play against the machine or not in the main loop, right after the configuration of the colors and dimensions.
 
-7. Use of AI tools
-  AI tools were used to fix bugs or errors that arose when running the program. It was also useful in the git pipeline and understanding how working collaboratively can be effective using GitHub while changing code locally.
+8. Use of AI Tools
+AI tools were used to help fix bugs or errors that appeared when running the program. They were also useful for understanding some parts of the code and finding possible solutions to programming problems. It also helped us understand why certain errors appeared and how we could correct them.
+Overall, AI tools were used as a support tool during the development of the project.
