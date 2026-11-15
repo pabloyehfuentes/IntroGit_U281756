@@ -18,6 +18,7 @@ U282038's functions
 - change_colors()
 - read_color()
 
+Both team members also worked on testing the program and making sure that all the functions worked correctly together.
 
 2. Overview of your design
 
@@ -29,22 +30,29 @@ Configuration (comes before the Game loop) : configuration returns five values t
 
 3. Key implementation decisions
    
-One important decision was not to use global variables. Instead, we used parameters to pass information between functions and return values to get the results. This makes the code easier to understand and test.
-We also decided to separate the configuration from the game loop. This allows the user to change the game settings before starting to play.
-Another decision was to divide the program into smaller functions, so each function has a specific task. This makes the code easier to test and helps us find errors.
-Finally, we added the option to play against the machine, allowing the user to choose how they want to play. 
-
+One important decision was to divide the program into smaller functions, so each function has a specific task. This makes the code easier to understand and test.
+We also decided not to use global variables. Instead, we used parameters to pass information between functions and return values to get the results. This helps keep the code more organised.
+Another decision was to separate the configuration from the game loop. This allows the user to change the game settings before starting to play.
+Finally, we used separate functions for tasks such as checking user inputs, changing colours and detecting collisions. This made it easier to work on different parts of the program and find errors.
 
 4. Problems and solutions
-
-When writing the code for the machine, it would not respond quickly to reach the ball making it very easy for the player to win. I could not find a solution for this, I tried to make the AI paddle faster but even then it made mistakes, such as moving excessively or staying still when it should have rearranged itself to meet the ball. 
+   
+One of the main difficulties we encountered was the behaviour of the AI paddle.
+Initially, the machine did not react quickly enough to reach the ball, which made it relatively easy for the player to win.
+We tried increasing the AI paddle's speed, but this did not completely solve the problem. The paddle sometimes moved too much or remained still when it should have adjusted its position to follow the ball.
+We realised that increasing the speed alone was not enough to improve its behaviour. The AI also needed to make better decisions about the ball's position and movement.
+Although we tried different adjustments, we did not manage to solve this problem completely. Therefore, the AI paddle's behaviour remained one of the limitations of our final implementation.
 
 5. Testing
-   By testing functions individually in Google Colab, we can test each function and see that it works properly. On the other hand for functions that needed the pygame library, by running the program multiple times after each function had been completed and checking that it worked properly was enough testing. 
+By testing functions individually in Google Colab, we could check each function and see if it worked properly. We also tried different inputs to check that the functions returned the correct values.
+On the other hand, for functions that needed the Pygame library, we tested them by running the program multiple times after each function had been completed and checking that everything worked properly.
+We also checked that the different functions worked correctly together in the final game and that the changes did not affect other parts of the program.
 
-6. Optional features
-- Added a user input asking if the user would like to play against the machine or not in the main loop, right after the configuration of the colors and dimensions.
+7. Optional features
+We added an extra option that allows the user to choose whether they want to play against the machine.
+This question appears in main(), after the user has configured the game dimensions and colours.
+This feature gives the user more control over the game and provides another way to play.
 
-7. Use of AI Tools
-AI tools were used to help fix bugs or errors that appeared when running the program. They were also useful for understanding some parts of the code and finding possible solutions to programming problems. It also helped us understand why certain errors appeared and how we could correct them.
-Overall, AI tools were used as a support tool during the development of the project.
+8. Use of AI Tools
+AI tools were used to help fix bugs or errors that appeared when running the program. They were also useful for understanding some parts of the code and finding possible solutions to programming problems.
+We also used AI to better understand the requirements of some functions, as some instructions were not completely clear. This helped us understand what each function was expected to do before implementing it. Overall, AI tools were used as a support tool during the development of the project, helping us understand the code, solve problems and improve our programming skills.
