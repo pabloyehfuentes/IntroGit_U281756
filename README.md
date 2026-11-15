@@ -17,7 +17,7 @@ U282038's functions
 - get_config()
 - change_colors()
 - read_color()
-- read_int_in_range_w_default()
+
 
 2. Overview of your design
 main()
