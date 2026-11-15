@@ -544,11 +544,14 @@ def compute_ai_direction(ball_y: int, paddle_y: int, paddle_h: int) -> int:
     You might want to use a small tolerance margin so the paddle doesn't “vibrate” 
     when the ball is aligned enough.
     """
-    # TODO: put your code!!!!
-
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate it when adding your code
-    return 0
+    paddle_center = (paddle_y + paddle_h) / 2
+    while True:
+        if ball_y < paddle_center: #compares ball position to the center of the paddle with a tolerance value of 5
+            return -1
+        elif ball_y > paddle_center:
+            return 1
+        else: # if the position is the same as the paddle center the paddle will stay still.
+            return 0
 
 # =============================================
 # Checking KEYS UP/DOWN (given to the students)
@@ -615,6 +618,7 @@ def show_message(screen: pygame.Surface,message: str,backg_col, foreg_col, show_
 def main() -> None:
     paddle_h, paddle_speed, speed_ball_x, speed_ball_y, ball_radius = get_config()
     backg_col, foreg_col = change_colors()
+    PLAY_AGAINST_MACHINE = ask_yes_no("Do you want to play against the machine?") # makes it able to change if you want to play against the machine in the terminal
 
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -648,7 +652,6 @@ def main() -> None:
             direction_right = compute_ai_direction(ball_y, p2_y, paddle_h)
         else:
             direction_right = read_player_direction(keys, KEY_UP_RIGHT, KEY_DOWN_RIGHT)
-
 
         # 2) Update state (ONLY by calling functions)
         p1_y = move_paddle(p1_y, direction_left, paddle_speed, HEIGHT, paddle_h)
