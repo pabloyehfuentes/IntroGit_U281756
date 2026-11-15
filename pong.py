@@ -203,9 +203,9 @@ def read_color(prompt: str) -> tuple[int, int, int]:
     # TODO: put your code!!!!
     # return r, g, b
     #  Red , Green and Blue value between 0 and 255 
-    r = read_int_in_range("Red of" + prompt +  " color (0-255): ", 0, 255)
-    g = read_int_in_range("Green of" + prompt +  " color (0-255): ", 0, 255)
-    b = read_int_in_range("Blue of" + prompt +  " color (0-255): ", 0, 255)
+    r = read_int_in_range("Red of " + prompt +  " color (0-255): ", 0, 255)
+    g = read_int_in_range("Green of " + prompt +  " color (0-255): ", 0, 255)
+    b = read_int_in_range("Blue of " + prompt +  " color (0-255): ", 0, 255)
     return (r, g, b)
     
     
@@ -235,11 +235,12 @@ def read_int_in_range(prompt: str, low: int, high: int) -> int:
         text = input(f"{prompt} (between {low} and {high}): " )
         try:
             num = int(text)
-        except ValueError:
-            print("That is not a whole number.")
-        if low <= num <= high:
-            return num
-        print(f"Please enter a number between {low} and {high}.")
+        except ValueError: 
+            print("That is not a whole number.") # if the users enters a non-integer value it will ask again and does not run the range check, so there are no value errors 
+        else:
+            if low <= num <= high:
+                return num
+            print(f"Please enter a number between {low} and {high}.")
 
 def read_int_in_range_w_default(prompt: str, low: int, high: int, default_val: int) -> int:
     """ Advanced/alternate more user-friendly version of read_int_in_range().
@@ -444,7 +445,6 @@ def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_
     - The collision box ignores the ball's circular shape for simplicity,
       which is sufficient for this game.
     """
-    # TODO: put your code!!!!
     hit = False
 
     # approximating the circular ball by a small square where:
@@ -471,7 +471,7 @@ def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_
         else:
             # hits the left side of the paddle
             x = paddle_x - radius
-        vx = -vx # reflects the horizontal speed
+        vx = -vx # reflects the horizontal speed to the other side, right if it was left and vice versa
 
     return x, y, vx, vy, hit
 
