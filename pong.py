@@ -447,8 +447,32 @@ def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_
     # TODO: put your code!!!!
     hit = False
 
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate it when adding your code
+    # approximating the circular ball by a small square where:
+    ball_left = x - radius
+    ball_right = x + radius
+    ball_top = y - radius
+    ball_bottom = y + radius
+
+    # approximating the paddle into a rectangle where:
+    paddle_right = paddle_x + paddle_w
+    paddle_bottom = paddle_y + paddle_h
+    # we know that paddle_x, paddle_y is the top-left corner of the paddle so we do not need to calculate it
+
+    # check for collision (requirements when the two rectangles overlap)
+    overlap_horiontal = ball_left < paddle_right and ball_right > paddle_x
+    overlap_vertical = ball_top < paddle_bottom and ball_bottom > paddle_y
+    if overlap_horiontal and overlap_vertical:
+        hit = True
+
+        # move the ball outside the paddle on the way it came from (reflects the ball)
+        if vx < 0:
+            # the ball moves left, so it hits the right side of the paddle
+            x = paddle_right + radius
+        else:
+            # hits the left side of the paddle
+            x = paddle_x - radius
+        vx = -vx # reflects the horizontal speed
+
     return x, y, vx, vy, hit
 
 def reset_ball(center_x: int, center_y: int, vx0: int, vy0: int, to_right: bool) -> tuple[int, int, int, int]:
