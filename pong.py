@@ -230,18 +230,16 @@ def read_int_in_range(prompt: str, low: int, high: int) -> int:
     -------
     An integer value such that low <= value <= high.
     """
-    
-    # TODO: put your code!!!!
-while True:
-    text = input(prompt)
-    if text.isdigit() or (text.startswith("-") and text[1:].isdigit()):
-        num = int(text)
+
+    while True:
+        text = input(f"{prompt} (between {low} and {high}): " )
+        try:
+            num = int(text)
+        except ValueError:
+            print("That is not a whole number.")
         if low <= num <= high:
             return num
-       
-        print("Invalid number. Try again.")
         print(f"Please enter a number between {low} and {high}.")
-
 
 def read_int_in_range_w_default(prompt: str, low: int, high: int, default_val: int) -> int:
     """ Advanced/alternate more user-friendly version of read_int_in_range().
@@ -382,10 +380,18 @@ def collide_ball_walls(x: int, y: int, vx: int, vy: int, radius: int, width: int
         When hitting a horizontal wall, change the sign of vy
         For precisely detecting collisions, you might need to consider the ball radius
     """
-    # TODO: put your code!!!!
+    # since y is the current center position of the ball, its top point is y - radius
+    # and the bottom-most point is y + radius    
 
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate it when adding your code
+    # top wall: if the top edge of the ball has gone above the screen
+    if y - radius < 0:
+        y = radius
+        vy = -vy
+
+    # bottom wall: else if the bottom edge of the ball went below the screen 
+    elif y + radius > height:
+        y = height - radius
+        vy = -vy
     return x, y, vx, vy
 
 
